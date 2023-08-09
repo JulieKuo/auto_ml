@@ -1,0 +1,3 @@
+pscp -P 22 -pw servtechpwd -r C:\Users\admin\PycharmProjects\DataReconstruct\run_cloud.py servtech@192.168.1.232:/home/servtech/tabular_data/data_reconstruct/
+pscp -P 22 -pw servtechpwd -r C:\Users\admin\PycharmProjects\DataReconstruct\ai_platform_interface\ servtech@192.168.1.232:/home/servtech/tabular_data/data_reconstruct
+pscp -P 22 -pw servtechpwd -r C:\Users\admin\PycharmProjects\DataReconstruct\utils\ servtech@192.168.1.232:/home/servtech/tabular_data/data_reconstruct/

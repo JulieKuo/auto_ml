@@ -1,0 +1,3 @@
+pscp -P 22 -pw servtechpwd C:\Users\admin\PycharmProjects\ParserTools\parser_tool.py servtech@192.168.1.232:/home/servtech/tabular_data/parser_tool/
+pscp -P 22 -pw servtechpwd -r C:\Users\admin\PycharmProjects\ParserTools\ai_platform_interface\ servtech@192.168.1.232:/home/servtech/tabular_data/parser_tool/ai_platform_interface
+pscp -P 22 -pw servtechpwd -r C:\Users\admin\PycharmProjects\ParserTools\task\ servtech@192.168.1.232:/home/servtech/tabular_data/parser_tool/task

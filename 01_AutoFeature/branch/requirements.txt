@@ -1,0 +1,9 @@
+pandas
+sklearn
+scipy
+lightgbm
+category_encoders
+numpy
+redis
+mysql_connector
+requests

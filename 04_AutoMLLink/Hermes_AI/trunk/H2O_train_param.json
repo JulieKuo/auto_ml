@@ -1,0 +1,7 @@
+{
+	"max_runtime_secs":600,
+	"max_models": 25,
+	"seed": 1,
+	"exclude_algos": null,
+	"include_algos": null
+}

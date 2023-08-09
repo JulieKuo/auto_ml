@@ -1,0 +1,7 @@
+numpy
+pandas
+sklearn
+redis
+requests
+scipy
+mysql_connector

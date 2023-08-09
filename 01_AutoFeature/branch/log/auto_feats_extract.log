@@ -1,0 +1,38 @@
+2023-05-09 11:15:29,589 INFO Request received, got arguments: {'fileName': 'train.csv|test.csv', 'jobName': 'non_shuffle', 'label': 'Hourly_Production', 'userId': 'servtech.julie', 'groupId': 'servtech', 'projectId': 'p00021', 'job_id': '20201117171442561'}
+2023-05-09 11:15:29,589 INFO Reading Config
+2023-05-09 11:15:29,658 INFO Loaded data from: C:\Users\tzuli\Documents\python\1_AI\data\servtech\p00021\Tabular\AfterLabelMerge\train.csv | Columns = 28 | Rows = 18611 -> 18611
+2023-05-09 11:15:29,712 INFO Loaded data from: C:\Users\tzuli\Documents\python\1_AI\data\servtech\p00021\Tabular\AfterLabelMerge\test.csv | Columns = 28 | Rows = 4653 -> 4653
+2023-05-09 11:15:29,736 INFO Initialize parameters
+2023-05-09 11:15:29,736 INFO params has been set
+2023-05-09 11:15:29,736 INFO Received FileHeaderAndType
+2023-05-09 11:15:29,739 INFO Casting feature...
+2023-05-09 11:15:29,739 INFO  ---- Synthesis ---- 
+2023-05-09 11:15:29,740 INFO the first 10 unique label values in data:  [36.9, 36.8, 36.7, 35.6, 35.8, 35.9, 36.0, 36.1, 36.2, 36.3]
+2023-05-09 11:15:29,740 INFO infers prediction problem is: regression  (because dtype of label-column == float and label-values can't be converted to int).
+2023-05-09 11:15:29,745 INFO v preprocess
+2023-05-09 11:15:29,756 INFO v generate
+2023-05-09 11:15:30,279 INFO v clean
+2023-05-09 11:15:30,304 INFO v correlation
+2023-05-09 11:15:30,822 INFO v extract
+2023-05-09 11:15:30,824 INFO v rolling
+2023-05-09 11:15:49,208 INFO v wrap_selection-unary
+2023-05-09 11:15:51,950 INFO v wrap_selection-groupby
+2023-05-09 11:15:52,052 INFO v complete
+2023-05-09 11:15:52,326 INFO  ---- Statistic ---- 
+2023-05-09 11:15:53,829 INFO v regression
+2023-05-09 11:15:53,831 INFO v complete
+2023-05-09 11:15:53,832 INFO  ---- Transform ---- 
+2023-05-09 11:15:53,833 INFO v extract
+2023-05-09 11:15:55,208 INFO v category_encoder
+2023-05-09 11:15:55,215 INFO v normalization
+2023-05-09 11:15:55,223 INFO v complete
+2023-05-09 11:15:55,224 INFO v end
+2023-05-09 11:15:55,225 INFO Cast Completed. DataShape: (18307, 19)
+2023-05-09 11:15:55,225 INFO Save mold to C:\Users\tzuli\Documents\python\1_AI\data\servtech\p00021\AutoFeatureEngineering\train.csv_test.csv_20201117171442561\20201117171442561_servtech_p00021_mold.mo
+2023-05-09 11:15:55,227 INFO Writing dataset...
+2023-05-09 11:15:55,547 INFO v shaping
+2023-05-09 11:15:55,869 INFO v end
+2023-05-09 11:15:55,870 INFO Shape Completed. DataShape: (4653, 19)
+2023-05-09 11:15:55,870 INFO Writing dataset...
+2023-05-09 11:15:55,980 INFO AutomaticFeatureExtraction completed successfully.
+2023-05-09 11:15:55,981 INFO DB - job completed.

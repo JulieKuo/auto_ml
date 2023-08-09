@@ -1,0 +1,10 @@
+*.zip
+data
+04_AutoMLLink/formula_julie
+04_AutoMLLink/Hermes_AI/trunk_julie
+**/config.json
+**/*config.json
+**/config copy.json
+**/config.ini
+**/__pycache__
+**/.svn
