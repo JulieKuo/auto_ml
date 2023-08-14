@@ -2,7 +2,7 @@ import os
 
 def save_explain_plots(model, data, type_, chart_root):
     # print("get explain objet")
-    obj = model.explain(data, exclude_explanations = ["ice", "pdp"], render=False)
+    obj = model.explain(data, exclude_explanations = ["ice", "pdp"], render = False)
 
     path = os.path.join(chart_root, "chart", type_)
     os.makedirs(path, exist_ok=True)
