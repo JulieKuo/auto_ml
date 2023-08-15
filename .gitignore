@@ -4,7 +4,8 @@ data
 04_AutoMLLink/Hermes_AI/trunk_julie
 **/config.json
 **/*config.json
-**/config copy.json
+**/config1.json
 **/config.ini
 **/__pycache__
 **/.svn
+*.pptx

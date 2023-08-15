@@ -1,8 +1,0 @@
-2023-06-20 12:02:08,011 INFO: Request received, got arguments: {'fileName': 'train.csv', 'userId': 'servtech.julie', 'groupId': 'servtech', 'projectId': 'p00021', 'job_id': '20201117171442561'}
-2023-06-20 12:02:08,011 INFO: Reading Config
-2023-06-20 12:02:08,041 INFO: Parser request received, filename=train.csv
-2023-06-20 12:02:08,053 INFO: Assert dataset header: ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'target', 'cat', 'date', 'time', 'period']
-2023-06-20 12:02:08,081 INFO: save train.json to C:\Users\tzuli\Documents\python\1_AI\data\servtech\p00021\FileHeaderAndType\train.json
-2023-06-20 12:02:08,085 INFO: train.csv usage=5880(bytes)
-2023-06-20 12:02:08,085 INFO: train.json usage=3378(bytes)
-2023-06-20 12:02:08,085 INFO: Parsing successfully completed

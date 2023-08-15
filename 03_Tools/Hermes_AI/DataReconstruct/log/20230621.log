@@ -1,9 +1,0 @@
-2023-06-21 10:44:06,538 INFO: Request received, got arguments: {'data': {'mode': 'split', 'file_name': ['iris.csv'], 'new_name': ['iris1.csv', 'iris2.csv'], 'split_size': 0.3, 'shuffle': True}, 'job_id': '2023062101', 'groupId': 'servtech.ai', 'userId': 'servtech.ai_julie', 'projectId': 'p00226'}
-2023-06-21 10:44:06,538 INFO: Reading Config
-2023-06-21 10:44:06,550 INFO: start reconstruct process, mode: split
-2023-06-21 10:44:06,571 INFO: iris1.csv usage=3365(bytes)
-2023-06-21 10:44:06,572 INFO: iris2.csv usage=1451(bytes)
-2023-06-21 10:44:06,573 INFO: iris1.json usage=1866(bytes)
-2023-06-21 10:44:06,574 INFO: iris2.json usage=1846(bytes)
-2023-06-21 10:44:06,574 INFO: data reconstruct completed successfully.
-2023-06-21 10:44:06,574 INFO: DB - job completed.

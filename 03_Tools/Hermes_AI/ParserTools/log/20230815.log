@@ -1,0 +1,8 @@
+2023-08-15 13:59:40,466 INFO: Request received, got arguments: {'fileName': 'long_cheng.csv', 'userId': 'servtech.ai_julie', 'groupId': 'servtech.ai', 'projectId': 'p00226', 'job_id': '20230814082335099'}
+2023-08-15 13:59:40,467 INFO: Reading Config
+2023-08-15 13:59:40,503 INFO: Parser request received, filename=long_cheng.csv
+2023-08-15 13:59:40,617 INFO: Assert dataset header: ['Hourly_Production', '1_Turbine_Motor_Side_Pressure', '1_Turbine_Free_Side_Pressure', '1_Turbine_Negative_Pressure', '1_Turbine_Negative_Pressure.1', '1_Turbine_Main_Motor_Current', '1_Vacuum_Pump_Motor_Side_Vibration', '1_Vacuum_Pump_Free_Side_Vibration', '2_Turbine_Motor_Side_Pressure', '2_Turbine_Free_Side_Pressure', '2_Turbine_Negative_Pressure', '2_Turbine_Negative_Pressure.1', '2_Turbine_Main_Motor_Current', '2_Vacuum_Pump_Motor_Side_Vibration', '2_Vacuum_Pump_Free_Side_Vibration', '3_Turbine_Motor_Side_Pressure', '3_Turbine_Free_Side_Pressure', '3_Turbine_Negative_Pressure', '3_Turbine_Negative_Pressure.1', '3_Turbine_Main_Motor_Current', '3_Vacuum_Pump_Motor_Side_Vibration', '3_Vacuum_Pump_Free_Side_Vibration', '4_Turbine_Free_Side_Pressure', '4_Turbine_Negative_Pressure', '4_Turbine_Negative_Pressure.1', '4_Turbine_Main_Motor_Current', '4_Vacuum_Pump_Motor_Side_Vibration', '4_Vacuum_Pump_Free_Side_Vibration']
+2023-08-15 13:59:40,956 INFO: save long_cheng.json to C:\Users\tzuli\Documents\python\1_AI\data\servtech.ai\p00226\FileHeaderAndType\long_cheng.json
+2023-08-15 13:59:40,962 INFO: long_cheng.csv usage=3428714(bytes)
+2023-08-15 13:59:40,963 INFO: long_cheng.json usage=11168(bytes)
+2023-08-15 13:59:40,963 INFO: Parsing successfully completed
