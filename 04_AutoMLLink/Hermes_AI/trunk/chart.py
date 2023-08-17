@@ -1,4 +1,6 @@
 import os
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif'] = ['SimHei']
 
 def save_explain_plots(model, data, type_, chart_root):
     # print("get explain objet")
