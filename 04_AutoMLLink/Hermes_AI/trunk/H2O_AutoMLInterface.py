@@ -6,8 +6,6 @@ import glob
 import h2o
 from h2o.automl import H2OAutoML
 import json
-import matplotlib.pyplot as plt
-plt.rcParams['font.sans-serif'] = ['SimHei']
 import os
 import pandas as pd
 from pathlib import Path
@@ -17,6 +15,8 @@ from chart import save_explain_plots
 # import sklearn.metrics
 # from os import path, makedirs, environ
 # import dataframe_image as dfi
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif'] = ['SimHei']
 
 
 FLAG_DEBUG_MODE = False

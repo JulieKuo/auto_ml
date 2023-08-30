@@ -1,7 +1,7 @@
 import numpy as np
+import six
 import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = ['SimHei']
-import six
 
 
 def render_mpl_table(data, col_width=3.0, row_height=0.625, font_size=14,
