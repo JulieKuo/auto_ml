@@ -6,7 +6,7 @@ import os, json, sys, base64
 
 
 
-# 取得根目錄
+# get root path
 current_path = os.path.abspath(__file__)
 root    = os.path.dirname(current_path)
 
