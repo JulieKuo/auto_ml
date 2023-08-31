@@ -1,0 +1,14 @@
+{
+    "ROOT": "C:\\Users\\tzuli\\Documents\\python\\1_AI\\data",
+    "PROGRAM_USER": 0,
+    "DATABASE_CONFIG":{
+        "host": "127.0.0.1",
+        "port": 3306,
+        "password": "!zxcvb"
+    },
+    "REDIS_CONFIG":{
+        "host": "127.0.0.1",
+        "port": 6379
+    },
+    "CUSTOM_PARAMETER": false
+}

@@ -24,7 +24,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-t", "--test", help="undergo system tests", action="store_true")
 parser.add_argument("task", help="determine which task would be predict", nargs='?', type=str,)
 args = parser.parse_args()
-# args = parser.parse_args(args = [])
 
 
 class AutomaticFeatureExtraction(AbstractMusesAiFrame):
