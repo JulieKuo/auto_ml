@@ -45,10 +45,10 @@ try:
     chart_path = os.path.join(config['GROUP_PROJECT_FOLDER'], input_['groupId'], input_['projectId'], "ChartPresent", input_['job_id'])
     charts = ["missing_value", "heatmap", "count", "box", "kde", "kde_dataset", "adversarial"]
     for chart in charts:
-        path = os.path.join(chart_path, chart)    
+        path = os.path.join(chart_path, chart)
         if os.path.exists(path):
-            shutil.rmtree(path)        
-        os.makedirs(path, exist_ok = True)    
+            shutil.rmtree(path)
+        os.makedirs(path, exist_ok = True)
     logging.info(f'save charts to {chart_path}')
     
 
@@ -118,10 +118,10 @@ except:
 
 
 
-finally:    
+finally:
     result_json = os.path.join(root, "result.json")
     logging.info(f'Save result to {result_json}')
     with open(result_json, 'w') as file:
-        json.dump(result, file, indent = 4)    
+        json.dump(result, file, indent = 4)
     
     log.shutdown()
