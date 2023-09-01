@@ -2,7 +2,7 @@ import pandas as pd
 from plot import *
 from traceback import format_exc
 from log_config import Log
-import os, json, sys, base64
+import os, json, sys, base64, shutil
 
 
 
@@ -45,7 +45,10 @@ try:
     chart_path = os.path.join(config['GROUP_PROJECT_FOLDER'], input_['groupId'], input_['projectId'], "ChartPresent", input_['job_id'])
     charts = ["missing_value", "heatmap", "count", "box", "kde", "kde_dataset", "adversarial"]
     for chart in charts:
-        os.makedirs(os.path.join(chart_path, chart), exist_ok = True)    
+        path = os.path.join(chart_path, chart)    
+        if os.path.exists(path):
+            shutil.rmtree(path)        
+        os.makedirs(path, exist_ok = True)    
     logging.info(f'save charts to {chart_path}')
     
 
