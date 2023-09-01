@@ -91,8 +91,8 @@ try:
 
     ami.set_value(f"formula_train_{group_id}_{project_id}_{model_name}_status", "Complete")
     ami.set_value(f"formula_train_{group_id}_{project_id}_{model_name}_percent", 1)
-    ami.set_value(f"formula_train_{group_id}_{project_id}_{model_name}_ak_loss", round(ak_test_r2, 2))
-    ami.set_value(f"formula_train_{group_id}_{project_id}_{model_name}_mlp_loss", round(mlp_test_r2, 2))
+    ami.set_value(f"formula_train_{group_id}_{project_id}_{model_name}_loss", min(round(ak_test_mse, 2), round(mlp_test_mse, 2)))
+    ami.set_value(f"formula_train_{group_id}_{project_id}_{model_name}_accuracy", max(round(ak_test_r2, 2), round(mlp_test_r2, 2)))
 
 
     with open(os.path.join(parser_filepath, parser_filename), 'r') as pr:

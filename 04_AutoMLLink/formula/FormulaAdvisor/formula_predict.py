@@ -118,7 +118,7 @@ try:
     df_results.sort_values(by='deviation', key=lambda x: abs(x), inplace=True)
     df_results.reset_index(drop=True, inplace=True)
     root_logger.info(f'Results written to: {model_path}/predict_result.csv')
-    df_results.to_csv(f"{model_path}/predict_result.csv")
+    df_results.to_csv(f"{model_path}/{file_id}/predict_result.csv")
 
 
     ami.set_value(f"formula_pred_{group_id}_{project_id}_{file_id}_{model_name}_percent", 1)
