@@ -10,19 +10,31 @@ plt.rcParams['font.sans-serif'] = ['Taipei Sans TC Beta']
 
 
 def missing_value(file_name, df, top, chart_path):
-    fig, ax = plt.subplots(1, 1, figsize = (20, 10), constrained_layout = True)
-    msno.matrix(df.iloc[:, :top], color = (0.4, 0.7, 1), sparkline=False, ax = ax)   
-    title = f"{file_name}-缺失值(1)"
-    fig.suptitle(title, fontsize = 18)
-    fig.savefig(os.path.join(chart_path, "missing_value", f"{title}.png"))
-    plt.close()
+    # 計算需要每張圖放top個features共需幾張圖
+    num = df.shape[1] // top
+    num += min(df.shape[1] % top, 1)
 
-    fig, ax = plt.subplots(1, 1, figsize = (20, 10), constrained_layout = True)
-    msno.bar(df.iloc[:, :top], color="#66B3FF", ax = ax) 
-    title = f"{file_name}-缺失值(2)"
-    fig.suptitle(title, fontsize = 18)
-    fig.savefig(os.path.join(chart_path, "missing_value", f"{title}.png"))
-    plt.close()
+    for i in range(1, num + 1):
+        start = (i - 1) * top
+        end = min(i * top, df.shape[1])
+        
+        fig, ax = plt.subplots(1, 1, figsize = (20, 10), constrained_layout = True)
+        msno.matrix(df.iloc[:, start:end], color = (0.4, 0.7, 1), sparkline = False, ax = ax)   
+        title = f"{i}-{file_name}-缺失值分佈"
+        fig.suptitle(title, fontsize = 18)
+        distribution_path = os.path.join(chart_path, "missing_value", "distribution")
+        os.makedirs(distribution_path, exist_ok = True)
+        fig.savefig(os.path.join(distribution_path, f"{title}.png"))
+        plt.close()
+
+        fig, ax = plt.subplots(1, 1, figsize = (20, 10), constrained_layout = True)
+        msno.bar(df.iloc[:, start:end], color="#66B3FF", ax = ax) 
+        title = f"{i}-{file_name}-缺失值數量"
+        fig.suptitle(title, fontsize = 18)
+        count_path = os.path.join(chart_path, "missing_value", "count")
+        os.makedirs(count_path, exist_ok = True)
+        fig.savefig(os.path.join(count_path, f"{title}.png"))
+        plt.close()
 
 
 
@@ -42,14 +54,14 @@ def heatmap(file_name, df, numerical, top, chart_path):
 
 
 def count(file_name, df, category, top, chart_path):
-    for feat in category:
+    for i, feat in enumerate(category):
         top_cat = df[feat].value_counts().iloc[:top].index
         df1 = df[df[feat].isin(top_cat)]
 
         length, width = max(6.5, len(category) / 2), max(4.75, len(category) / 3)
         plt.figure(figsize = (length, width), constrained_layout = True)
         sns.countplot(data = df1, x = feat, width = 0.5)
-        title = f"{file_name}-{feat}-類別分佈"
+        title = f"{i+1}-{file_name}-類別分佈-{feat}"
         plt.title(title)
         plt.savefig(os.path.join(chart_path, "count", f"{title}.png"))
         plt.close()
@@ -57,10 +69,10 @@ def count(file_name, df, category, top, chart_path):
 
 
 def box(file_name, df, numerical, chart_path):
-    for feat in numerical:
+    for i, feat in enumerate(numerical):
         plt.figure(constrained_layout = True)
         sns.boxplot(data = df, y = feat, width = 0.5)
-        title = f"{file_name}-{feat}-數值分佈(1)"
+        title = f"{i+1}-{file_name}-數值分佈-{feat}"
         plt.title(title)
         plt.savefig(os.path.join(chart_path, "box", f"{title}.png"))
         plt.close()
@@ -68,21 +80,10 @@ def box(file_name, df, numerical, chart_path):
 
 
 def kde(file_name, df, numerical, chart_path):
-    for feat in numerical:
+    for i, feat in enumerate(numerical):
         plt.figure(constrained_layout = True)
         sns.kdeplot(data = df, x = feat, fill = True)
-        title = f"{file_name}-{feat}-數值分佈(2)"
-        plt.title(title)
-        plt.savefig(os.path.join(chart_path, "kde", f"{title}.png"))
-        plt.close()
-
-
-
-def kde(file_name, df, numerical, chart_path):
-    for feat in numerical:
-        plt.figure(constrained_layout = True)
-        sns.kdeplot(data = df, x = feat, fill = True)
-        title = f"{file_name}-{feat}-數值分佈(2)"
+        title = f"{i+1}-{file_name}-數值分佈-{feat}"
         plt.title(title)
         plt.savefig(os.path.join(chart_path, "kde", f"{title}.png"))
         plt.close()
@@ -97,10 +98,10 @@ def kde_dataset(file_names, dfs, numerical, chart_path):
     df1["Dataset"] = file_names[1]
     df = pd.concat([df0, df1], ignore_index = True)
 
-    for feat in numerical:
+    for i, feat in enumerate(numerical):
         plt.figure(constrained_layout = True)
         sns.kdeplot(data = df, x = feat, hue = "Dataset", fill = True)
-        title = f"{feat}-資料集分佈"
+        title = f"{i+1}-資料集分佈-{feat}"
         plt.title(title)
         plt.savefig(os.path.join(chart_path, "kde_dataset", f"{title}.png"))
         plt.close()

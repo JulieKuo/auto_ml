@@ -1,5 +1,5 @@
-2023-08-30 14:16:17 INFO --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-2023-08-30 14:16:17 INFO input = {'fileNames': ['train.csv', 'test.csv'], 'userId': 'servtech.ai_julie', 'groupId': 'servtech.ai', 'projectId': 'p00226', 'job_id': '20230814082335099'}
-2023-08-30 14:16:17 INFO save charts to C:\Users\tzuli\Documents\python\1_AI\data\servtech.ai\p00226\ChartPresent\20230814082335099
-2023-08-30 14:16:18 INFO create charts...
-2023-08-30 14:16:56 INFO Save result to C:\Users\tzuli\Documents\python\1_AI\ChartPresent\result.json
+2023-09-08 15:15:49 INFO --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2023-09-08 15:15:49 INFO input = {'fileNames': ['hosong.csv'], 'userId': 'servtech.ai_julie', 'groupId': 'servtech.ai', 'projectId': 'p00226', 'job_id': '20230814082335099'}
+2023-09-08 15:15:49 INFO save charts to C:\Users\tzuli\Documents\python\1_AI\data\servtech.ai\p00226\ChartPresent
+2023-09-08 15:15:49 INFO create charts...
+2023-09-08 15:15:54 INFO Save result to C:\Users\tzuli\Documents\python\1_AI\ChartPresent\result.json

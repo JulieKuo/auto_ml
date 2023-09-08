@@ -2,7 +2,7 @@ import pandas as pd
 from plot import *
 from traceback import format_exc
 from log_config import Log
-import os, json, sys, base64, shutil
+import os, json, sys, base64, shutil, redis
 
 
 
@@ -28,6 +28,10 @@ try:
     # get config data
     with open(os.path.join(root, "config.json")) as f:
         config = json.load(f)
+
+
+    # set redis to pass progress
+    r = redis.StrictRedis(host = config["REDIS_CONFIG"]["host"], port = config["REDIS_CONFIG"]["port"])
     
 
     # get files path and parsers path
@@ -42,7 +46,7 @@ try:
     
 
     # create folders to save charts
-    chart_path = os.path.join(config['GROUP_PROJECT_FOLDER'], input_['groupId'], input_['projectId'], "ChartPresent", input_['job_id'])
+    chart_path = os.path.join(config['GROUP_PROJECT_FOLDER'], input_['groupId'], input_['projectId'], "ChartPresent")
     charts = ["missing_value", "heatmap", "count", "box", "kde", "kde_dataset", "adversarial"]
     for chart in charts:
         path = os.path.join(chart_path, chart)
@@ -75,30 +79,52 @@ try:
 
 
     # TODO: delete
-    feats = ["1_Turbine_Negative_Pressure.1", "2_Turbine_Negative_Pressure.1", "3_Vacuum_Pump_Motor_Side_Vibration", "4_Turbine_Negative_Pressure.1"]
-    for feat in feats:
-        numericals[0].remove(feat)
-        numericals[1].remove(feat)
-        categories[0].append(feat)
-        categories[1].append(feat)
-    dfs[0][feats] = dfs[0][feats].astype(object)
-    dfs[1][feats] = dfs[1][feats].astype(object)
+    # feats = ["1_Turbine_Negative_Pressure.1", "2_Turbine_Negative_Pressure.1", "3_Vacuum_Pump_Motor_Side_Vibration", "4_Turbine_Negative_Pressure.1"]
+    # for feat in feats:
+    #     numericals[0].remove(feat)
+    #     numericals[1].remove(feat)
+    #     categories[0].append(feat)
+    #     categories[1].append(feat)
+    # dfs[0][feats] = dfs[0][feats].astype(object)
+    # dfs[1][feats] = dfs[1][feats].astype(object)
 
 
     # create charts
     logging.info('create charts...')
     top = 30
+    progress = 0
+    progress_gap = (1 / 13) if (len(file_names) == 2) else (1 / 8)
     for file_name, df, numerical, category in zip(file_names, dfs, numericals, categories):
         missing_value(file_name, df, top, chart_path)
-        heatmap(file_name, df, numerical, top, chart_path)
-        count(file_name, df, category, top, chart_path)
-        box(file_name, df, numerical, chart_path)
-        kde(file_name, df, numerical, chart_path)
+        progress += progress_gap
+        r.set('ChartPresent_percent', round(progress, 2))
 
-    if (numericals[0] == numericals[1]) and (categories[0] == categories[1]): # 特徵相同
+        heatmap(file_name, df, numerical, top, chart_path)
+        progress += progress_gap
+        r.set('ChartPresent_percent', round(progress, 2))
+
+        count(file_name, df, category, top, chart_path)
+        progress += progress_gap
+        r.set('ChartPresent_percent', round(progress, 2))
+        
+        box(file_name, df, numerical, chart_path)
+        progress += progress_gap
+        r.set('ChartPresent_percent', round(progress, 2))
+
+        kde(file_name, df, numerical, chart_path)
+        progress += progress_gap
+        r.set('ChartPresent_percent', round(progress, 2))
+
+    if (len(file_names) == 2) and (numericals[0] == numericals[1]) and (categories[0] == categories[1]): # 特徵相同
         kde_dataset(file_names, dfs, numericals[0], chart_path)
+        progress += progress_gap
+        r.set('ChartPresent_percent', round(progress, 2))
+
         if (len(dfs[0]) != len(dfs[1])) or (not (dfs[0] == dfs[1]).all().all()): # 資料集不相同
             adversarial(dfs, categories[0], chart_path)
+            progress += progress_gap
+            r.set('ChartPresent_percent', round(progress, 2))
+
 
     
     result = {
@@ -123,5 +149,7 @@ finally:
     logging.info(f'Save result to {result_json}')
     with open(result_json, 'w') as file:
         json.dump(result, file, indent = 4)
+        
+    r.set('ChartPresent_percent', 1)
     
     log.shutdown()
