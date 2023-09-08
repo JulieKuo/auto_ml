@@ -31,7 +31,7 @@ try:
 
 
     # set redis to pass progress
-    r = redis.StrictRedis(host = config["REDIS_CONFIG"]["host"], port = config["REDIS_CONFIG"]["port"])
+    r = redis.Redis(host = config["REDIS_CONFIG"]["host"], port = config["REDIS_CONFIG"]["port"])
     
 
     # get files path and parsers path
@@ -79,14 +79,14 @@ try:
 
 
     # TODO: delete
-    # feats = ["1_Turbine_Negative_Pressure.1", "2_Turbine_Negative_Pressure.1", "3_Vacuum_Pump_Motor_Side_Vibration", "4_Turbine_Negative_Pressure.1"]
-    # for feat in feats:
-    #     numericals[0].remove(feat)
-    #     numericals[1].remove(feat)
-    #     categories[0].append(feat)
-    #     categories[1].append(feat)
-    # dfs[0][feats] = dfs[0][feats].astype(object)
-    # dfs[1][feats] = dfs[1][feats].astype(object)
+    feats = ["1_Turbine_Negative_Pressure.1", "2_Turbine_Negative_Pressure.1", "3_Vacuum_Pump_Motor_Side_Vibration", "4_Turbine_Negative_Pressure.1"]
+    for feat in feats:
+        numericals[0].remove(feat)
+        numericals[1].remove(feat)
+        categories[0].append(feat)
+        categories[1].append(feat)
+    dfs[0][feats] = dfs[0][feats].astype(object)
+    dfs[1][feats] = dfs[1][feats].astype(object)
 
 
     # create charts
