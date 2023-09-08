@@ -115,12 +115,12 @@ try:
         progress += progress_gap
         r.set('ChartPresent_percent', round(progress, 2))
 
-    if (len(file_names) == 2) and (numericals[0] == numericals[1]) and (categories[0] == categories[1]): # 特徵相同
+    if (len(file_names) == 2) and (numericals[0] == numericals[1]) and (categories[0] == categories[1]): # the same features
         kde_dataset(file_names, dfs, numericals[0], chart_path)
         progress += progress_gap
         r.set('ChartPresent_percent', round(progress, 2))
 
-        if (len(dfs[0]) != len(dfs[1])) or (not (dfs[0] == dfs[1]).all().all()): # 資料集不相同
+        if (len(dfs[0]) != len(dfs[1])) or (not (dfs[0] == dfs[1]).all().all()): # different datasets
             adversarial(dfs, categories[0], chart_path)
             progress += progress_gap
             r.set('ChartPresent_percent', round(progress, 2))
