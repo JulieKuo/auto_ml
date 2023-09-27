@@ -5,6 +5,7 @@ import xgboost as xgb
 from xgboost import XGBClassifier, plot_importance, cv
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
+from descript import *
 import os
 plt.rcParams["font.sans-serif"] = ["Taipei Sans TC Beta"]
 
@@ -39,7 +40,7 @@ def missing_value(file_name, df, top, chart_path):
 
 
 
-def heatmap(file_name, df, numerical, top, chart_path):
+def heatmap(file_name, df, numerical, top, chart_path, target):
     corr = df[numerical].iloc[:, :top].corr().round(2)
 
     length, width = max(10, corr.shape[1] / 3 * 2), max(5, corr.shape[1] / 2)
@@ -51,6 +52,9 @@ def heatmap(file_name, df, numerical, top, chart_path):
     plt.yticks(rotation = 0)
     plt.savefig(os.path.join(chart_path, "heatmap", f"{title}.png"))
     plt.close()
+
+    if target in numerical:
+        heatmap_description(file_name, corr, chart_path, target)
 
 
 
@@ -76,7 +80,9 @@ def box(file_name, df, numerical, chart_path):
         title = f"{i+1}-{file_name}-數值分佈-{feat}"
         plt.title(title)
         plt.savefig(os.path.join(chart_path, "box", f"{title}.png"))
-        plt.close()
+        plt.close()    
+    
+    box_description(file_name, df, numerical, chart_path)
 
 
 
@@ -88,6 +94,8 @@ def kde(file_name, df, numerical, chart_path):
         plt.title(title)
         plt.savefig(os.path.join(chart_path, "kde", f"{title}.png"))
         plt.close()
+    
+    kde_description(file_name, df, numerical, chart_path)
 
 
 

@@ -8,3 +8,4 @@ data
 **/.svn
 *.pptx
 !04_AutoMLLink/data
+ChartPresent/logs/*.log
