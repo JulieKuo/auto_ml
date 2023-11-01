@@ -1,8 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import missingno as msno
-import xgboost as xgb
-from xgboost import XGBClassifier, plot_importance, cv
+from xgboost import DMatrix, XGBClassifier, plot_importance, cv
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 from descript import *
@@ -10,8 +9,9 @@ import os
 plt.rcParams["font.sans-serif"] = ["Taipei Sans TC Beta"]
 
 
+
 def missing_value(file_name, df, top, chart_path):
-    # 計算需要每張圖放top個features共需幾張圖
+    # 計算每張圖放top個features，共需幾張圖
     num = df.shape[1] // top
     num += min(df.shape[1] % top, 1)
 
@@ -142,7 +142,7 @@ def adversarial(dfs, category, chart_path):
     # create XGBoost data structure
     X = df1_shuffled.drop(["AV"], axis = 1)
     y = df1_shuffled["AV"]
-    XGBdata = xgb.DMatrix(data = X, label = y)
+    XGBdata = DMatrix(data = X, label = y)
 
     # XGBoost parameters
     params = {

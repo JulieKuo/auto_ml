@@ -1,5 +1,13 @@
-import os, shutil, json
+import os, shutil, sys, base64, json
 import pandas as pd
+
+
+def get_input():    
+    input_ = sys.argv[1]
+    input_ = base64.b64decode(input_).decode("utf-8")
+    input_ = json.loads(input_)
+
+    return input_
 
 
 def get_path(input_, config):

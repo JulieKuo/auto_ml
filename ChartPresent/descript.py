@@ -3,6 +3,7 @@ import pandas as pd
 from scipy.stats import skew
 
 
+
 def box_description(file_name, df, numerical, chart_path):
     description = {}
     for col in numerical:
@@ -27,6 +28,7 @@ def box_description(file_name, df, numerical, chart_path):
         json.dump(description, file, indent = 4)
 
 
+
 def kde_description(file_name, df, numerical, chart_path):  
     skewness = skew(df[numerical]) # skewness = (3 * (mean - median)) / std
     skewness = pd.DataFrame(skewness, columns = ["skewness"], index = numerical)
@@ -36,6 +38,7 @@ def kde_description(file_name, df, numerical, chart_path):
     descript_path = os.path.join(chart_path, "kde", f"{file_name}-skew.json")
     with open(descript_path, "w") as file:
         json.dump(description, file, indent = 4)
+
 
 
 def heatmap_description(file_name, corr, chart_path, target):
