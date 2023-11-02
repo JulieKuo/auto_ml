@@ -24,20 +24,20 @@ def box_description(file_name, df, numerical, chart_path):
         }
 
     descript_path = os.path.join(chart_path, "box", f"{file_name}-outlier.json")
-    with open(descript_path, "w") as file:
-        json.dump(description, file, indent = 4)
+    with open(descript_path, "w", encoding = 'utf-8') as file:
+        json.dump(description, file, indent = 4, ensure_ascii = False)
 
 
 
-def kde_description(file_name, df, numerical, chart_path):  
+def kde_description(file_name, df, numerical, chart_path):
     skewness = skew(df[numerical]) # skewness = (3 * (mean - median)) / std
     skewness = pd.DataFrame(skewness, columns = ["skewness"], index = numerical)
     skewness = skewness.query("abs(skewness) > 0.75")
     description = skewness.to_dict()["skewness"]
 
     descript_path = os.path.join(chart_path, "kde", f"{file_name}-skew.json")
-    with open(descript_path, "w") as file:
-        json.dump(description, file, indent = 4)
+    with open(descript_path, "w", encoding = 'utf-8') as file:
+        json.dump(description, file, indent = 4, ensure_ascii = False)
 
 
 
@@ -62,5 +62,5 @@ def heatmap_description(file_name, corr, chart_path, target):
     }
 
     descript_path = os.path.join(chart_path, "heatmap", f"{file_name}-correlation.json")
-    with open(descript_path, "w") as file:
-        json.dump(description, file, indent = 4)
+    with open(descript_path, "w", encoding = 'utf-8') as file:
+        json.dump(description, file, indent = 4, ensure_ascii = False)
