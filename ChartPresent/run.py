@@ -7,7 +7,7 @@ import os, json, sys, redis
 
 
 
-class visualize():
+class Visualize():
     def __init__(self):        
         # get root path
         current   = os.path.abspath(__file__)
@@ -90,7 +90,7 @@ class visualize():
             top = 30
             progress = 0
             progress_gap = (1 / 13) if (len(file_names) == 2) else (1 / 6) # how many "progress_gaps" need to be added to "progress"
-            for file_name, df, numerical, category in zip(file_names, dfs, numericals, categories):
+            for (file_name, df, numerical, category) in zip(file_names, dfs, numericals, categories):
                 missing_value(file_name, df, top, chart_path) # For all features.
                 progress += progress_gap
                 self.r.set(redis_key, round(progress, 2))
@@ -123,7 +123,8 @@ class visualize():
                     progress += progress_gap
                     self.r.set(redis_key, round(progress, 2))
 
-            
+
+            # build result
             result = {
                 "status":     "success",
                 "chart_path": chart_path
@@ -149,15 +150,17 @@ class visualize():
 
 
         finally:
+            # save result
             result_json = os.path.join(self.root, "result.json")
             self.logging.info(f"Save result to {result_json}")
             with open(result_json, "w", encoding = 'utf-8') as file:
                 json.dump(result, file, indent = 4, ensure_ascii = False)
-                
+            
+            # pass progress and shut down log
             self.r.set(redis_key, 1) 
             self.log.shutdown()
 
 
 
 if __name__ == '__main__':
-    visualize().main()
+    Visualize().main()
