@@ -99,7 +99,7 @@ class Visualize():
                 progress += progress_gap
                 self.r.set(redis_key, round(progress, 2))
 
-                count(file_name, df, category, top, chart_path) # For categorical features
+                count(file_name, df, category, top, chart_path) # For categorical features.
                 progress += progress_gap
                 self.r.set(redis_key, round(progress, 2))
                 
