@@ -10,7 +10,7 @@ plt.rcParams["font.sans-serif"] = ["Taipei Sans TC Beta"]
 
 
 
-def missing_value(file_name, df, top, chart_path):
+def missing_value(file_name: str, df: pd.DataFrame, top: int, chart_path: str):
     # Calculate how many charts are needed when placing n features from each chart. (n = top)
     num = df.shape[1] // top
     num += min(df.shape[1] % top, 1)
@@ -45,7 +45,7 @@ def missing_value(file_name, df, top, chart_path):
 
 
 
-def heatmap(file_name, df, numerical, top, chart_path, target):
+def heatmap(file_name: str, df: pd.DataFrame, numerical: list, top: int, chart_path: str, target: str):
     # calculate correlation
     corr = df[numerical].iloc[:, :top].corr().round(2)
 
@@ -66,7 +66,7 @@ def heatmap(file_name, df, numerical, top, chart_path, target):
 
 
 
-def count(file_name, df, category, top, chart_path):
+def count(file_name: str, df: pd.DataFrame, category: list, top: int, chart_path: str):
     for i, feat in enumerate(category):
         # Get the top n categories in a feature. (n = top)
         top_cat = df[feat].value_counts().iloc[:top].index
@@ -84,7 +84,7 @@ def count(file_name, df, category, top, chart_path):
 
 
 
-def box(file_name, df, numerical, chart_path):
+def box(file_name: str, df: pd.DataFrame, numerical: list, chart_path: str):
     # generate charts
     for i, feat in enumerate(numerical):
         plt.figure(constrained_layout = True)
@@ -99,7 +99,7 @@ def box(file_name, df, numerical, chart_path):
 
 
 
-def kde(file_name, df, numerical, chart_path):
+def kde(file_name: str, df: pd.DataFrame, numerical: list, chart_path: str):
     # generate charts
     for i, feat in enumerate(numerical):
         plt.figure(constrained_layout = True)
@@ -114,7 +114,7 @@ def kde(file_name, df, numerical, chart_path):
 
 
 
-def kde_dataset(file_names, dfs, numerical, chart_path):
+def kde_dataset(file_names: list, dfs: list, numerical: list, chart_path: str):
     # concat two datasets
     df0 = dfs[0].copy()
     df1 = dfs[1].copy()
@@ -134,7 +134,7 @@ def kde_dataset(file_names, dfs, numerical, chart_path):
 
 
 
-def adversarial(dfs, category, chart_path):
+def adversarial(dfs: list, category: list, chart_path: str):
     # concat two datasets to do category encoding
     train = dfs[0].copy()
     test  = dfs[1].copy()

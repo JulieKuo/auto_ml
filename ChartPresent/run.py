@@ -56,7 +56,7 @@ class Visualize():
     
     
 
-    def main(self, redis_key = "ChartPresent_percent"):
+    def main(self, redis_key:str = "ChartPresent_percent"):
         try:
             self.logging.info("-" * 200)
 

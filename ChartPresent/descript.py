@@ -4,7 +4,7 @@ from scipy.stats import skew
 
 
 
-def box_description(file_name, df, numerical, chart_path):
+def box_description(file_name: str, df: pd.DataFrame, numerical: list, chart_path: str):
     # If the value is not between "Q1-(1.5*IQR)" and "Q3+(1.5*IQR)", it's considered an outlier.
     description = {}
     for col in numerical:
@@ -31,7 +31,7 @@ def box_description(file_name, df, numerical, chart_path):
 
 
 
-def kde_description(file_name, df, numerical, chart_path):
+def kde_description(file_name: str, df: pd.DataFrame, numerical: list, chart_path: str):
     # If the skewness value exceeds +-0.75, it's considered skewed.
     skewness    = skew(df[numerical]) # skewness = (3 * (mean - median)) / std
     skewness    = pd.DataFrame(skewness, columns = ["skewness"], index = numerical)
@@ -45,7 +45,7 @@ def kde_description(file_name, df, numerical, chart_path):
 
 
 
-def heatmap_description(file_name, corr, chart_path, target):
+def heatmap_description(file_name: str, corr: pd.DataFrame, chart_path: str, target: str):
     # cut target's correlation to ["micro", "low", "medium", "high"]
     corr  = corr.drop(target) # drop the target row to remove the target's own correlation
     level = pd.cut(x = abs(corr[target]), bins = [-1, 0.25, 0.5, 0.75, 1], labels = ["micro", "low", "medium", "high"]) # cut target's correlation

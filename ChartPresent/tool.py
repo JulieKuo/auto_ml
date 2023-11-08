@@ -2,7 +2,7 @@ import os, shutil, sys, base64, json
 import pandas as pd
 
 
-def get_input():    
+def get_input() -> dict:    
     input_ = sys.argv[1] # get parameter
     input_ = base64.b64decode(input_).decode("utf-8") # decode base64
     input_ = json.loads(input_) # Convert string to json format
@@ -10,8 +10,8 @@ def get_input():
     return input_
 
 
-def get_path(input_, config):
-    file_names = input_["fileNames"]
+def get_path(input_: dict, config: dict):
+    file_names = input_["fileNames"] 
     file_paths, parser_paths = [], []
     for file_name in file_names:
         # training & testing data
@@ -25,7 +25,7 @@ def get_path(input_, config):
     return file_names, file_paths, parser_paths
 
 
-def create_folder(input_, config):
+def create_folder(input_: dict, config: dict) -> str:
     chart_path = os.path.join(config["GROUP_PROJECT_FOLDER"], input_["groupId"], input_["projectId"], "ChartPresent")
     charts = ["missing_value", "heatmap", "count", "box", "kde", "kde_dataset", "adversarial"] # folders that need to be created
     for chart in charts:
@@ -39,7 +39,7 @@ def create_folder(input_, config):
     return chart_path
 
 
-def get_df_feat(file_paths, parser_paths):
+def get_df_feat(file_paths: list, parser_paths: list):
     dfs, numericals, categories = [], [], []
     for file_path, parser_path in zip(file_paths, parser_paths):
         # get parser data
