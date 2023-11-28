@@ -45,6 +45,7 @@ class FormulaAdvisorAdam:
         v = np.zeros(X.shape[1])
         s = np.zeros(X.shape[1])
         while True:
+            # 計算所有輸入的梯度
             for i in range(X.shape[1]):
                 # 計算梯度: dloss_dx = (loss(x+h) - loss(x-h)) / (2*h) = 微幅調整X時loss的變動量
                 X_up, X_down = self.adjust_X(X, h, i)             
@@ -55,21 +56,21 @@ class FormulaAdvisorAdam:
                 dloss_dx = (loss_up - loss_down) / (2 * h)
 
                 # 以Adam的方式更新參數，需先計算v、s
-                # v = bata1 * v + (1 - beta1) * dloss_dweight  # Momentum: 累積過去梯度，讓跟當前趨勢同方向的參數有更多的更新，即沿著動量的方向越滾越快
-                # s = bata2 * s + (1 - beta2) * (dloss_dweight ⊙ dloss_dweight) # RMSprop: 累積過去梯度，以獲得參數被修正程度，修正大的參數學習率會逐漸變小
+                # v = bata1 * v + (1 - beta1) * dloss_dx  # Momentum: 累積過去梯度，讓跟當前趨勢同方向的輸入有更多的更新，即沿著動量的方向越滾越快
+                # s = bata2 * s + (1 - beta2) * (dloss_dx ⊙ dloss_dx) # RMSprop: 累積過去梯度，以獲得輸入被修正程度，修正大的輸入學習率會逐漸變小
                 v[i] = (beta1 * v[i]) + ((1 - beta1) * dloss_dx)
                 s[i] = beta2 * s[i] + (1 - beta2) * np.multiply(dloss_dx, dloss_dx)
 
-            # 透過梯度計算新的參數
-            # weight = weight - learning_rate * (1 / ((s + eps) ** (1/2))) * v  # eps: 是極小值，避免s為0時發生除以0的情況
+            # 透過梯度計算新的輸入
+            # x = x - learning_rate * (1 / ((s + eps) ** (1/2))) * v  # eps: 是極小值，避免s為0時發生除以0的情況
             grad = (learn_rate * (1 / ((s + eps) ** (1/2))) * v)
-            new_X = X - grad
+            new_X = X - grad # 將新輸入暫存在new_X 
 
-            # 確認新參數是否在25%~75%的分布範圍內，並將不在分布範圍內的新參數的梯度轉為0，此次不更新該參數
+            # 確認新輸入是否在25%~75%的分布範圍內，並將不在分布範圍內的新輸入的梯度轉為0，即此次不更新該輸入
             mask = [True if (new_x >= self.constrain_df.iloc[0, c]) and (new_x <= self.constrain_df.iloc[1, c]) else False for c, new_x in enumerate(new_X.values[0])]
             grad *= mask
 
-            # 更新參數
+            # 更新輸入
             X -= grad
 
             # 查看新預測結果
@@ -80,6 +81,7 @@ class FormulaAdvisorAdam:
             pred = self.predict(new_X1)
             preds.append(pred)
 
+            # 計算新參數的loss
             loss = (target - pred) ** 2
             losses.append(loss)
             print(f"Epoch {epoch} - loss: {loss:.4f},  predict: {pred:.4f}")

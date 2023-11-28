@@ -20,7 +20,6 @@ class ModelAutokeras:
 
         reg = ak.StructuredDataRegressor(
             # project_name=self.model_name,
-            # directory=r"C:\Users\tzuli\Documents\python\1_AI\Formula\FormulaAdvisor\train\model",
             directory='/home/stadmin/AIPlatform/ExecutiveFile/formula/FormulaAdvisor/train/model',
             overwrite=True,
             max_trials=num_models,

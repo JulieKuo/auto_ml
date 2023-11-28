@@ -73,15 +73,15 @@ class Visualize():
                 assert ((numericals[0] == numericals[1]) and (categories[0] == categories[1])), "The features of two datasets are different."
 
 
-            # TODO: delete
-            feats = ["1_Turbine_Negative_Pressure.1", "2_Turbine_Negative_Pressure.1", "3_Vacuum_Pump_Motor_Side_Vibration", "4_Turbine_Negative_Pressure.1"]
-            for feat in feats:
-                numericals[0].remove(feat)
-                numericals[1].remove(feat)
-                categories[0].append(feat)
-                categories[1].append(feat)
-            dfs[0][feats] = dfs[0][feats].astype(object)
-            dfs[1][feats] = dfs[1][feats].astype(object)
+            # TODO: test categorical chart
+            # feats = ["1_Turbine_Negative_Pressure.1", "2_Turbine_Negative_Pressure.1", "3_Vacuum_Pump_Motor_Side_Vibration", "4_Turbine_Negative_Pressure.1"]
+            # for feat in feats:
+            #     numericals[0].remove(feat)
+            #     numericals[1].remove(feat)
+            #     categories[0].append(feat)
+            #     categories[1].append(feat)
+            # dfs[0][feats] = dfs[0][feats].astype(object)
+            # dfs[1][feats] = dfs[1][feats].astype(object)
 
 
             # create charts

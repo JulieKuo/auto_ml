@@ -81,6 +81,7 @@ class AutomaticFeatureExtraction(AbstractMusesAiFrame):
 
         save_dir = self.root_dir / 'AutoFeatureEngineering' / '_'.join(filename + [self.job_id])
         save_dir.mkdir(parents=True, exist_ok=True)
+        original_stdout = sys.stdout
         report_file = f"{self.file_head}_report.txt"
         sys.stdout = open(save_dir / report_file, 'w')
 
@@ -119,13 +120,13 @@ class AutomaticFeatureExtraction(AbstractMusesAiFrame):
             self.save_dtypes(shaped, filename[1], label)
             ami_predict.activate_job()
 
-        sys.stdout.close()
         zipfile_name = '_'.join(filename)
         self.file_zipper(save_dir, zipfile_name)
         self.record_usage(save_dir)
         self.log_msg.info('AutomaticFeatureExtraction completed successfully.')
         self.ami.complete_job()
         self.log_msg.info('DB - job completed.')
+        sys.stdout = original_stdout
         return
 
     def record_usage(self, file_dir):

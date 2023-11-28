@@ -26,7 +26,7 @@ class Log():
         self.logger.setLevel(log_level)
 
         # create a file handler for log rotation
-        self.hdlr = TimedRotatingFileHandler(filename = filepath, when = freq, interval = interval, backupCount = backup, encoding='utf-8')
+        self.hdlr = TimedRotatingFileHandler(filename = filepath, when = freq, interval = interval, backupCount = backup, encoding = 'utf-8')
         self.hdlr.setFormatter(fmt)
 
         # add the file handler to the logger

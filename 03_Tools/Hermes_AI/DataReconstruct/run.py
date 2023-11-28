@@ -37,11 +37,9 @@ class DataReconstruct(AbstractMusesAiFrame):
 
         self.log_msg.info(f'start reconstruct process, mode: {mode}')
         if mode == 'split':
-            # TODO: (前端)
-            # TODO: 【隨機排序】打勾時，可選擇是否勾選【類別比例相同】，並選擇目標類別(此處只可選擇category類別的欄位)
             split_size = params['data']['split_size']
             shuffle = params['data']['shuffle']
-            stratify = params['data'].get("stratify", []) # params['data']['stratify']
+            stratify = params['data'].get("stratify", [])
             df_raw = pd.read_csv(os.path.join(file_dir, files_name[0]))
             df_1, df_2 = split(df_raw, split_size=split_size, shuffle=shuffle, stratify = stratify)
             df_1.to_csv(f'{file_dir}/{new_name[0]}', index=False)
@@ -87,10 +85,7 @@ class DataReconstruct(AbstractMusesAiFrame):
             self.record_usage(os.path.join(file_dir, 'ParserResult'), new_name[0].replace('.csv', '.json'))
 
         elif mode == 'data_leakage':
-            # TODO: (前端)
-            # TODO: column_sort的feature只可選取建議類別為datetime或numerical的類型
-            # TODO: 若沒指定column_sort的feature，則至少要有一個datetime類型的feature
-            column_sort = params["data"]["column_sort"]
+            column_sort = params["data"].get("column_sort", [])
             remove_quantile = params["data"]["remove_quantile"]
             df_raw = pd.read_csv(os.path.join(file_dir, files_name[0]))
             dtype = dtp.get_feature_types(df_raw)

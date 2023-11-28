@@ -12,7 +12,6 @@ FORMAT = "%(asctime)s %(levelname)s %(message)s"
 root_logger = logging.getLogger()
 root_logger.setLevel(logging.INFO)
 handler = logging.FileHandler("/home/stadmin/AIPlatform/ExecutiveFile/formula/FormulaAdvisor/logs/formula_train.log", 'a', 'utf-8')
-# handler = logging.FileHandler(r'C:\Users\tzuli\Documents\python\1_AI\formula\FormulaAdvisor\logs\formula_train.log', 'a', 'utf-8')
 handler.setFormatter(logging.Formatter(FORMAT))
 root_logger.addHandler(handler)
 
@@ -35,7 +34,6 @@ try:
 
     config = ConfigParser()
     config.read("/home/stadmin/AIPlatform/ExecutiveFile/formula/FormulaAdvisor/config.ini", encoding='utf8')
-    # config.read(r"C:\Users\tzuli\Documents\python\1_AI\formula\FormulaAdvisor\config.ini", encoding='utf8')
     program_user = config['Interface'].getint('PROGRAM_USER')
     redis_config = eval(config['Interface'].get('REDIS_CONFIG'))
     database_config = eval(config['Interface'].get('DATABASE_CONFIG'))

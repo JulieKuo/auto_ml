@@ -3,5 +3,5 @@ matplotlib==3.7.1
 numpy==1.23.5
 pandas==2.0.1
 redis==4.5.5
-Requests==2.31.0
+requests==2.31.0
 https://h2o-release.s3.amazonaws.com/h2o/rel-3.42.0/1/Python/h2o-3.42.0.1-py2.py3-none-any.whl

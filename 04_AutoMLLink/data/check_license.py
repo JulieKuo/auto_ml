@@ -47,7 +47,7 @@ class LicenseChecker():
 
     def check_license(self):
         hashed_string = self.get_hashed_string()
-        # print(f"hashed_string = {hashed_string}")
+        print(f"hashed_string = {hashed_string}")
         if hashed_string == self.registered:
             return 1
         else:
