@@ -85,7 +85,7 @@ try:
 
     ami.set_value(f"formula_pred_{group_id}_{project_id}_{model_name}_status", "Training")
     ami.set_value(f"formula_pred_{group_id}_{project_id}_{model_name}_percent", 0.3)
-    clip_trained_df = contract_data_range(trained_df, 'label', target, 0.1)
+    clip_trained_df = contract_data_range(trained_df, 'label', target, 0.1) # 從train data中挑選出在target附近一定範圍內的資料
     clip_trained_df_wo_label = pd.DataFrame(clip_trained_df.drop(columns='label', axis=1))
     
     
@@ -96,7 +96,7 @@ try:
     df_results = pd.DataFrame()
     for idx, quant in enumerate([0.25, 0.375, 0.5, 0.625, 0.75]):
         for advisor in ["kde", "adam"]:
-            initial_formula = pd.DataFrame(clip_trained_df_wo_label.quantile(q=quant)).T
+            initial_formula = pd.DataFrame(clip_trained_df_wo_label.quantile(q=quant)).T # 抓出每一個特徵的第quant百分位數作為初始值
             root_logger.info(f'Finding acceptable formula by quant ({quant}), advisor({advisor})...')
 
             if advisor == "kde":

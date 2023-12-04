@@ -1,0 +1,14 @@
+2023-11-16 14:30:35,305 INFO input = {'fileName': 'train.csv', 'label': 'Hourly_Production', 'modelName': 'formula', 'userId': 'servtech.ai_julie', 'groupId': 'servtech.ai', 'projectId': 'p00245', 'job_id': '20231113065607808'}
+2023-11-16 14:30:35,320 INFO data_filepath = C:\\Users\\tzuli\\Documents\\python\\1_AI\\data\servtech.ai\p00245\Tabular\AfterLabelMerge\train.csv
+2023-11-16 14:30:35,351 INFO Data loaded rows: 16159, columns: 28
+2023-11-16 14:30:35,352 INFO file loaded
+2023-11-16 14:30:35,358 INFO Training...
+2023-11-16 14:30:35,358 INFO FeatureEngineering in progressing...
+2023-11-16 14:30:35,409 INFO Searching best model by Autokeras...
+2023-11-16 14:31:14,656 WARNING Found untraced functions such as _update_step_xla while saving (showing 1 of 1). These functions will not be directly callable after loading.
+2023-11-16 14:31:15,787 INFO Assets written to: C:\Users\tzuli\Documents\python\1_AI\04_AutoMLLink\Formula\FormulaAdvisor\train\model\structured_data_regressor\best_model\assets
+2023-11-16 14:31:26,263 WARNING Found untraced functions such as _update_step_xla while saving (showing 1 of 1). These functions will not be directly callable after loading.
+2023-11-16 14:31:27,643 INFO Assets written to: C:\\Users\\tzuli\\Documents\\python\\1_AI\\data\servtech.ai\p00245\Tabular\model\formula\keras\assets
+2023-11-16 14:31:27,897 INFO Autokeras Done. trina_mse=4.98, test_mse=6.15, train_r2=0.76, test_r2=0.69
+2023-11-16 14:31:27,897 INFO Train MLP model...
+2023-11-16 14:31:36,478 INFO MLP Done. trina_mse=5.07, test_mse=5.3, train_r2=0.79, test_r2=0.76
