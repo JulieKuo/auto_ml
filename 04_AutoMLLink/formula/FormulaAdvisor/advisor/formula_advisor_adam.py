@@ -74,9 +74,6 @@ class FormulaAdvisorAdam:
             X -= grad
 
             # 查看新預測結果
-            # if self.model_type == "h2o":
-            #     new_X1 = h2o.H2OFrame(X)
-            # else:
             new_X1 = X.copy()
             pred = self.predict(new_X1)
             preds.append(pred)
